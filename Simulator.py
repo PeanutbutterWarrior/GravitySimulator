@@ -33,7 +33,7 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption('Gravity Simulator')
 
 bodies = [
-    Body('Earth', 0, 0, 0, 0, 5.97237e24, 50),
+    Body('Earth', 0, 0, 0, 12.5, 5.97237e24, 50),
     Body('Moon', 385000000, 0, 0, -1018, 7.348e22, 20),
 ]
 
