@@ -13,8 +13,8 @@ class Body:
     mass: float
     radius: int
     color: tuple[int, int, int]
-    x_position_change = 0
-    y_position_change = 0
+    new_x_position = 0
+    new_y_position = 0
 
 
 WHITE = (255, 255, 255)
@@ -57,9 +57,11 @@ while True:
                 if body1 is body2:
                     continue
 
-                dx = body2.x_position + body2.x_position_change - body1.x_position - body1.x_position_change
-                dy = body2.y_position + body2.y_position_change - body1.y_position - body1.y_position_change
+                dx = body2.x_position - body1.x_position
+                dy = body2.y_position - body1.y_position
                 distance2 = dx * dx + dy * dy
+                if distance2 == 0:
+                    continue
                 force = G * (body1.mass * body2.mass) / distance2
                 acceleration = force / body1.mass
 
@@ -70,14 +72,12 @@ while True:
                 body1.x_velocity += x_acceleration * SIM_SECONDS_PER_FRAME / STEPS_PER_FRAME
                 body1.y_velocity += y_acceleration * SIM_SECONDS_PER_FRAME / STEPS_PER_FRAME
 
-                body1.x_position_change = body1.x_velocity * SIM_SECONDS_PER_FRAME / STEPS_PER_FRAME
-                body1.y_position_change = body1.y_velocity * SIM_SECONDS_PER_FRAME / STEPS_PER_FRAME
+                body1.new_x_position = body1.x_position + body1.x_velocity * SIM_SECONDS_PER_FRAME / STEPS_PER_FRAME
+                body1.new_y_position = body1.y_position + body1.y_velocity * SIM_SECONDS_PER_FRAME / STEPS_PER_FRAME
 
         for body in bodies:
-            body.x_position += body.x_position_change
-            body.y_position += body.y_position_change
-            body.x_position_change = 0
-            body.y_position_change = 0
+            body.x_position = body.new_x_position
+            body.y_position = body.new_y_position
 
     # Rendering
     screen.fill(BLACK)
