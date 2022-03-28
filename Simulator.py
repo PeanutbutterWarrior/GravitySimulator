@@ -22,9 +22,9 @@ BLACK = (0, 0, 0)
 
 SCREEN_WIDTH = 2000
 SCREEN_HEIGHT = 1000
-DISTANCE_SCALE_FACTOR = 8e5
+DISTANCE_SCALE_FACTOR = 5e8
 FRAMES_PER_SECOND = 30
-SIM_SECONDS_PER_FRAME = 60 * 60
+SIM_SECONDS_PER_FRAME = 60 * 60 * 24 * 3
 STEPS_PER_FRAME = 200
 
 G = 6.67430e-11
@@ -34,12 +34,19 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption('Gravity Simulator')
 
 bodies = [
-    Body('Earth', 0, 0, 0, 12.5, 5.97237e24, 50, (0, 0, 200)),
-    Body('Moon', 3.85e8, 0, 0, -1018, 7.348e22, 20, (200, 200, 200)),
-    Body('Spaceship', 7e7, 0, 0, -3000, 5, 5, WHITE),
-    #Body('Mars', 0, 0, 0, 0, 6.417e23, 40, (175, 0, 0)),
-    #Body('Phobos', 9.4e6, 0, 0, 2138, 1.0659e16, 10, (200, 200, 200)),
-    #Body('Deimos', -2e7, 0, 0, 1351.3, 1.4762e15, 6, (150, 150, 150)),
+    # Body('Earth', 0, 0, 0, 12.5, 5.97237e24, 50, (0, 0, 200)),
+    # Body('Moon', 3.85e8, 0, 0, -1018, 7.348e22, 20, (200, 200, 200)),
+    # Body('Spaceship', 7e7, 0, 0, -100, 5, 5, WHITE),
+
+    # Body('Mars', 0, 0, 0, 0, 6.417e23, 40, (175, 0, 0)),
+    # Body('Phobos', 9.4e6, 0, 0, 2138, 1.0659e16, 10, (200, 200, 200)),
+    # Body('Deimos', -2e7, 0, 0, 1351.3, 1.4762e15, 6, (150, 150, 150)),
+
+    Body('Sun', 0, 0, 0, 0, 1.9885e30, 30, (255, 255, 0)),
+    Body('Mercury', 58e9, 0, 0, -47.36e3, 3.3011e23, 8, (200, 200, 200)),
+    Body('Venus', -108e9, 0, 0, -35e3, 4.8675e24, 13, (255, 125, 0)),
+    Body('Earth', 150e9, 0, 0, 29.78e3, 5.97237e24, 15, (0, 255, 0)),
+    Body('Mars', -227e9, 0, 0, -24e3, 6.417e23, 12, (255, 0, 0)),
 ]
 
 clock = pygame.time.Clock()
